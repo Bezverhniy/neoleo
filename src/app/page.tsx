@@ -36,7 +36,7 @@ const IcoSteam = () => (
 
 const DOCK = [
   {
-    id: "whatsapp",   href: "https://wa.me/YOUR_NUMBER",
+    id: "whatsapp",   href: "https://wa.me/79162218983",
     label: "WhatsApp",  Ico: IcoWhatsApp,
     iconColor: "#25D366",
     glow:   "rgba(37,211,102,0.60)",
