@@ -81,7 +81,7 @@ const DOCK = [
     shine:  "rgba(100,160,200,0.14)",
   },
   {
-    id: "email",      href: "mailto:hello@neoleo.me",
+    id: "email",      href: "mailto:NeoLeo.me@gmail.com",
     label: "E-mail",    Ico: null,
     iconColor: "#00E5FF",
     glow:   "rgba(0,229,255,0.58)",
