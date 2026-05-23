@@ -54,7 +54,7 @@ const DOCK = [
     shine:  "rgba(42,171,238,0.16)",
   },
   {
-    id: "youtube",    href: "https://youtube.com/@YOUR_CHANNEL",
+    id: "youtube",    href: "https://youtube.com/@NeoLeoTV",
     label: "YouTube",   Ico: IcoYouTube,
     iconColor: "#FF3333",
     glow:   "rgba(255,51,51,0.58)",
