@@ -716,9 +716,7 @@ export default function HeroPage() {
           position: relative; display: flex;
           align-items: center; justify-content: center;
           width: 100%; height: 100%; border-radius: var(--btn-r);
-          background: linear-gradient(160deg,
-            color-mix(in srgb, var(--btn-bg) 100%, transparent) 0%,
-            rgba(0,0,0,.38) 100%);
+          background: var(--btn-bg);
           border: 1px solid var(--btn-border);
           backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
           box-shadow: 0 0 0 0 var(--btn-glow), 0 4px 18px rgba(0,0,0,.50);
@@ -740,13 +738,7 @@ export default function HeroPage() {
           border-radius: inherit; pointer-events: none;
           animation: nlShimmer 5s ease-in-out infinite;
         }
-        /* Static top-left glass sheen */
-        .nl-btn-face::before {
-          content: ''; position: absolute; inset: 0; border-radius: inherit;
-          background: linear-gradient(145deg,
-            rgba(255,255,255,.09) 0%, transparent 52%);
-          pointer-events: none;
-        }
+        
         .nl-btn-icon {
           display: flex; align-items: center; justify-content: center;
           filter: drop-shadow(0 0 5px var(--btn-glow));
