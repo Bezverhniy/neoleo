@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Mail } from "lucide-react";
+import { Mail, Gamepad2, Dumbbell, Compass, Waves, Music4, Trophy } from "lucide-react";
 
 // ─── Platform icons ───────────────────────────────────────────────────────────
 
@@ -356,9 +356,12 @@ function DockBtn({ d, idx }: { d: DockEntry; idx: number }) {
 // ─── World cards data ─────────────────────────────────────────────────────────
 
 const WORLD_CARDS = [
-  { icon: "🎮", label: "Gaming & VR",              sub: "Next-level play"   },
-  { icon: "🥊", label: "Boxing & Athletics",        sub: "Train. Fight. Win." },
-  { icon: "🧭", label: "Exploration & Creativity",  sub: "Beyond the map"   },
+  { Ico: Gamepad2, label: "Gaming & VR",              sub: "Next-level play"    },
+  { Ico: Dumbbell, label: "Boxing & Athletics",        sub: "Train. Fight. Win." },
+  { Ico: Compass,  label: "Exploration & Creativity",  sub: "Beyond the map"    },
+  { Ico: Waves,    label: "Swimming & Diving",         sub: "Fluid & fearless"   },
+  { Ico: Music4,   label: "Break Dance & Acrobatics",  sub: "Move with power"    },
+  { Ico: Trophy,   label: "Tennis & Horse Riding",     sub: "Speed & precision"  },
 ] as const;
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -469,18 +472,40 @@ export default function HeroPage() {
 
       {/* ══ NELEO WORLD SECTION */}
       <section className="nl-world">
+        {/* Ambient glow behind grid */}
+        <div className="nl-world-glow"/>
         <div className="nl-world-inner">
           <p className="nl-world-eyebrow">Identity Core</p>
           <h2 className="nl-world-title">NeoLeo World</h2>
           <div className="nl-world-grid">
             {WORLD_CARDS.map((card) => (
               <div key={card.label} className="nl-card">
-                <span className="nl-card-icon">{card.icon}</span>
+                <span className="nl-card-ico-wrap">
+                  <card.Ico size={26} strokeWidth={1.5}/>
+                </span>
                 <span className="nl-card-label">{card.label}</span>
                 <span className="nl-card-sub">{card.sub}</span>
               </div>
             ))}
           </div>
+          {/* Bottom HUD rings */}
+          <svg className="nl-world-hud" viewBox="0 0 430 120" preserveAspectRatio="xMidYMax meet">
+            <defs>
+              <linearGradient id="whr1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stopColor="#00EEFF" stopOpacity=".04"/>
+                <stop offset="50%"  stopColor="#00EEFF" stopOpacity=".28"/>
+                <stop offset="100%" stopColor="#00EEFF" stopOpacity=".04"/>
+              </linearGradient>
+              <linearGradient id="whr2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stopColor="#00DDFF" stopOpacity=".02"/>
+                <stop offset="50%"  stopColor="#00DDFF" stopOpacity=".14"/>
+                <stop offset="100%" stopColor="#00DDFF" stopOpacity=".02"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="215" cy="118" rx="180" ry="28" fill="none" stroke="url(#whr1)" strokeWidth="1.4"/>
+            <ellipse cx="215" cy="118" rx="130" ry="20" fill="none" stroke="url(#whr2)" strokeWidth="1.0"/>
+            <ellipse cx="215" cy="118" rx="80"  ry="12" fill="none" stroke="url(#whr1)" strokeWidth="0.8" opacity=".5"/>
+          </svg>
         </div>
       </section>
 
@@ -667,7 +692,7 @@ export default function HeroPage() {
         /* ══ SCENE ═════════════════════════════════════════════════════════ */
         .nl-hero-scroll-space {
           position: relative;
-          height: 140svh;
+          height: 56svh;
         }
         .nl-hero-sticky-wrap {
           position: fixed;
@@ -810,17 +835,24 @@ export default function HeroPage() {
         /* ══ DOMAIN ════════════════════════════════════════════════════════ */
         .nl-domain {
           margin: 0; font-size: .66rem; letter-spacing: .36em;
-          text-transform: uppercase; color: rgba(0,229,255,.20);
+          text-transform: uppercase; color: rgba(0,229,255,.20); transform: translateY(-16px);
         }
 
         /* ══ WORLD SECTION ═════════════════════════════════════════════════ */
         .nl-world {
           position: relative; z-index: 10;
-          width: 100%; padding: 60px 24px 80px;
+          width: 100%; padding: 42svh 20px 80px;
           display: flex; justify-content: center;
         }
+        .nl-world-glow {
+          position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+          width: 320px; height: 320px; border-radius: 50%;
+          background: radial-gradient(circle,
+            rgba(0,200,255,.10) 0%, rgba(0,80,180,.05) 50%, transparent 72%);
+          filter: blur(48px); pointer-events: none;
+        }
         .nl-world-inner {
-          width: 100%; max-width: 430px;
+          position: relative; width: 100%; max-width: 430px;
           display: flex; flex-direction: column;
           align-items: center; gap: 0;
         }
@@ -831,7 +863,7 @@ export default function HeroPage() {
           color: rgba(0,229,255,.45);
         }
         .nl-world-title {
-          margin: 0 0 36px;
+          margin: 0 0 32px;
           font-size: clamp(1.9rem, 8vw, 2.4rem);
           font-weight: 900; letter-spacing: .12em;
           text-transform: uppercase; line-height: 1;
@@ -842,31 +874,48 @@ export default function HeroPage() {
         }
         .nl-world-grid {
           width: 100%;
-          display: flex; flex-direction: column; gap: 14px;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 10px;
         }
         .nl-card {
-          display: flex; flex-direction: column; align-items: flex-start;
-          gap: 4px; padding: 20px 22px;
+          display: flex; flex-direction: column; align-items: center;
+          justify-content: center; text-align: center;
+          gap: 5px; padding: 14px 8px 12px;
+          aspect-ratio: 1 / 1.05;
           background: linear-gradient(145deg,
-            rgba(0,180,255,.07) 0%, rgba(0,60,120,.12) 100%);
-          border: 1px solid rgba(0,200,255,.18);
+            rgba(0,160,220,.09) 0%, rgba(0,40,100,.18) 100%);
+          border: 1px solid rgba(0,200,255,.20);
           border-radius: 18px;
-          backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-          box-shadow: 0 6px 24px rgba(0,0,0,.40);
+          backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+          box-shadow:
+            inset 0 1px 0 rgba(0,230,255,.10),
+            0 6px 20px rgba(0,0,0,.45);
         }
-        .nl-card-icon {
-          font-size: 1.8rem; line-height: 1;
-          margin-bottom: 6px; filter: drop-shadow(0 0 8px rgba(0,220,255,.50));
+        .nl-card-ico-wrap {
+          display: flex; align-items: center; justify-content: center;
+          width: 36px; height: 36px; border-radius: 10px; margin-bottom: 2px;
+          background: rgba(0,180,255,.10);
+          border: 1px solid rgba(0,200,255,.18);
+          color: #00E5FF;
+          filter: drop-shadow(0 0 5px rgba(0,220,255,.40));
         }
         .nl-card-label {
-          font-size: clamp(1.0rem, 4.5vw, 1.15rem);
-          font-weight: 700; letter-spacing: .08em;
-          text-transform: uppercase; color: rgba(160,230,255,.90);
+          font-size: clamp(.62rem, 2.8vw, .74rem);
+          font-weight: 700; letter-spacing: .04em;
+          text-transform: uppercase;
+          color: rgba(160,230,255,.92);
+          line-height: 1.2;
         }
         .nl-card-sub {
-          font-size: .78rem; font-weight: 500;
-          letter-spacing: .14em; text-transform: uppercase;
-          color: rgba(0,200,255,.45);
+          font-size: .58rem; font-weight: 500;
+          letter-spacing: .10em; text-transform: uppercase;
+          color: rgba(0,200,255,.40);
+        }
+        .nl-world-hud {
+          width: 100%; max-width: 430px;
+          height: 60px; margin-top: 36px;
+          overflow: visible; opacity: .7;
         }
 
         /* ══ RESETS ════════════════════════════════════════════════════════ */
