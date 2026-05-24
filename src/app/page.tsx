@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Mail } from "lucide-react";
 
 // ─── Platform icons ───────────────────────────────────────────────────────────
@@ -364,19 +364,24 @@ const WORLD_CARDS = [
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HeroPage() {
+  const { scrollY } = useScroll();
+  const heroY     = useTransform(scrollY, [0, 300], [0, -120]);
+  const emblScale = useTransform(scrollY, [0, 300], [1, 0.78]);
+
   return (
     <main className="nl-root">
       <Atmosphere/>
       <Stars/>
 
       {/* ══ HERO SCENE ══════════════════════════════════════════════════════ */}
-      <div className="nl-scene">
+      <motion.div className="nl-scene" style={{ y: heroY }}>
 
         {/* ── Emblem — transparent PNG, glow behind ── */}
         <motion.div className="nl-emblem-wrap"
           initial={{ opacity:0, scale:.55 }}
           animate={{ opacity:1, scale:1  }}
           transition={{ duration:.88, ease:[.16,1,.3,1] }}
+          style={{ scale: emblScale }}
         >
           {/* Glow layers sit BEHIND the image — z-index lower */}
           {/* Outer aura — slow wide breathe */}
@@ -449,9 +454,9 @@ export default function HeroPage() {
         >
           neoleo.me
         </motion.p>
-      </div>
+      </motion.div>
 
-      {/* ══ NELEO WORLD SECTION ═════════════════════════════════════════════ */}
+      {/* ══ NELEO WORLD SECTION */}
       <section className="nl-world">
         <div className="nl-world-inner">
           <p className="nl-world-eyebrow">Identity Core</p>
