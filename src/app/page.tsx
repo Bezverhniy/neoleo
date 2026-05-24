@@ -72,7 +72,7 @@ const DOCK = [
     shine:  "rgba(225,48,108,0.15)",
   },
   {
-    id: "steam",      href: "https://steamcommunity.com/id/YOUR_ID",
+    id: "steam",      href: "https://steamcommunity.com/id/NeoLeoTV",
     label: "Steam",     Ico: IcoSteam,
     iconColor: "#A8C6D8",
     glow:   "rgba(100,160,200,0.50)",
@@ -662,8 +662,8 @@ export default function HeroPage() {
           position: relative; display: flex;
           align-items: center; justify-content: center;
           margin-bottom: clamp(14px, 4vw, 22px);
-          width: clamp(210px, 52vw, 240px);
-          height: clamp(210px, 52vw, 240px);
+          width: clamp(283px, 71vw, 322px);
+          height: clamp(283px, 71vw, 322px);
         }
         .nl-emblem-aura {
           position: absolute; inset: -50%; z-index: 0; border-radius: 50%;
