@@ -480,9 +480,8 @@ export default function HeroPage() {
           <div className="nl-world-grid">
             {WORLD_CARDS.map((card) => (
               <div key={card.label} className="nl-card">
-                <span className="nl-card-shine"/>
                 <span className="nl-card-ico-wrap">
-                  <card.Ico size={22} strokeWidth={1.2}/>
+                  <card.Ico size={26} strokeWidth={1.5}/>
                 </span>
                 <span className="nl-card-label">{card.label}</span>
                 <span className="nl-card-sub">{card.sub}</span>
@@ -880,60 +879,38 @@ export default function HeroPage() {
           gap: 10px;
         }
         .nl-card {
-          position: relative; overflow: hidden;
           display: flex; flex-direction: column; align-items: center;
           justify-content: center; text-align: center;
           gap: 5px; padding: 14px 8px 12px;
           aspect-ratio: 1 / 1.05;
           background: linear-gradient(145deg,
-            rgba(0,160,220,.10) 0%, rgba(0,30,90,.22) 100%);
-          border: 1px solid rgba(0,210,255,.24);
+            rgba(0,160,220,.09) 0%, rgba(0,40,100,.18) 100%);
+          border: 1px solid rgba(0,200,255,.20);
           border-radius: 18px;
-          backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+          backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
           box-shadow:
-            0 0 0 1px rgba(0,180,255,.08),
-            inset 0 1px 0 rgba(0,240,255,.14),
-            0 8px 24px rgba(0,0,0,.50);
-          transition: transform .18s ease, box-shadow .18s ease;
-        }
-        .nl-card:active {
-          transform: scale(1.025);
-          box-shadow:
-            0 0 0 1px rgba(0,200,255,.18),
-            0 0 18px 2px rgba(0,200,255,.20),
-            inset 0 1px 0 rgba(0,240,255,.18),
-            0 8px 24px rgba(0,0,0,.50);
-        }
-        .nl-card-shine {
-          position: absolute; top: 0; left: 0; right: 0;
-          height: 42%; border-radius: 18px 18px 60% 60%;
-          background: linear-gradient(180deg,
-            rgba(255,255,255,.07) 0%, transparent 100%);
-          pointer-events: none;
+            inset 0 1px 0 rgba(0,230,255,.10),
+            0 6px 20px rgba(0,0,0,.45);
         }
         .nl-card-ico-wrap {
-          position: relative; z-index: 1;
           display: flex; align-items: center; justify-content: center;
           width: 36px; height: 36px; border-radius: 10px; margin-bottom: 2px;
-          background: linear-gradient(135deg,
-            rgba(0,200,255,.16) 0%, rgba(0,100,200,.08) 100%);
-          border: 1px solid rgba(0,210,255,.22);
-          color: #00E8FF;
-          filter: drop-shadow(0 0 7px rgba(0,220,255,.55));
+          background: rgba(0,180,255,.10);
+          border: 1px solid rgba(0,200,255,.18);
+          color: #00E5FF;
+          filter: drop-shadow(0 0 5px rgba(0,220,255,.40));
         }
         .nl-card-label {
-          position: relative; z-index: 1;
-          font-size: clamp(.60rem, 2.7vw, .72rem);
+          font-size: clamp(.62rem, 2.8vw, .74rem);
           font-weight: 700; letter-spacing: .04em;
           text-transform: uppercase;
-          color: rgba(170,235,255,.94);
+          color: rgba(160,230,255,.92);
           line-height: 1.2;
         }
         .nl-card-sub {
-          position: relative; z-index: 1;
-          font-size: .56rem; font-weight: 500;
+          font-size: .58rem; font-weight: 500;
           letter-spacing: .10em; text-transform: uppercase;
-          color: rgba(0,200,255,.38);
+          color: rgba(0,200,255,.40);
         }
         .nl-world-hud {
           width: 100%; max-width: 430px;
