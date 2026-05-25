@@ -365,12 +365,8 @@ const WORLD_CARDS = [
 
 export default function HeroPage() {
   const { scrollY } = useScroll();
-  const emblScale  = useTransform(scrollY, [0, 320], [1, 0.74]);
-  const titleScale = useTransform(scrollY, [0, 320], [1, 0.82]);
-  const titleY     = useTransform(scrollY, [0, 320], [0, -95]);
-  const dockY      = useTransform(scrollY, [0, 320], [0, -135]);
-  const sloganOp   = useTransform(scrollY, [0, 160], [1, 0]);
-  const sceneY     = useTransform(scrollY, [0, 320], ["0svh", "-25svh"]);
+  const heroY     = useTransform(scrollY, [0, 300], [0, -120]);
+  const emblScale = useTransform(scrollY, [0, 300], [1, 0.78]);
 
   return (
     <main className="nl-root">
@@ -378,9 +374,7 @@ export default function HeroPage() {
       <Stars/>
 
       {/* ══ HERO SCENE ══════════════════════════════════════════════════════ */}
-      <div className="nl-hero-scroll-space">
-      <div className="nl-hero-sticky-wrap">
-      <motion.div className="nl-scene" style={{ y: sceneY }}>
+      <motion.div className="nl-scene" style={{ y: heroY }}>
 
         {/* ── Emblem — transparent PNG, glow behind ── */}
         <motion.div className="nl-emblem-wrap"
@@ -430,7 +424,6 @@ export default function HeroPage() {
           initial={{ opacity:0, y:18 }}
           animate={{ opacity:1, y:0  }}
           transition={{ delay:.46, duration:.65, ease:"easeOut" }}
-          style={{ scale: titleScale, y: titleY }}
         >
           NeoLeo
         </motion.h1>
@@ -440,7 +433,6 @@ export default function HeroPage() {
           initial={{ opacity:0, y:12 }}
           animate={{ opacity:1, y:0  }}
           transition={{ delay:.64, duration:.55, ease:"easeOut" }}
-          style={{ opacity: sloganOp }}
         >
           Gamer · Creator · Explorer
         </motion.p>
@@ -450,7 +442,6 @@ export default function HeroPage() {
           initial={{ opacity:0, y:20 }}
           animate={{ opacity:1, y:0  }}
           transition={{ delay:.78, duration:.58, ease:[.16,1,.3,1] }}
-          style={{ y: dockY }}
         >
           {DOCK.map((d,i) => <DockBtn key={d.id} d={d} idx={i}/>)}
         </motion.div>
@@ -464,8 +455,6 @@ export default function HeroPage() {
           neoleo.me
         </motion.p>
       </motion.div>
-      </div>
-      </div>
 
       {/* ══ NELEO WORLD SECTION */}
       <section className="nl-world">
@@ -665,26 +654,12 @@ export default function HeroPage() {
         }
 
         /* ══ SCENE ═════════════════════════════════════════════════════════ */
-        .nl-hero-scroll-space {
-          position: relative;
-          height: 140svh;
-        }
-        .nl-hero-sticky-wrap {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 20;
-          height: 100svh;
-          width: 100%;
-          pointer-events: none;
-        }
         .nl-scene {
-          position: absolute; inset: 0; max-width: 430px;
+          position: relative; z-index: 10;
+          min-height: 100svh; max-width: 430px;
           margin: 0 auto; padding: 0 24px;
           display: flex; flex-direction: column;
           align-items: center; justify-content: center; gap: 0;
-          pointer-events: auto;
         }
 
         /* ══ EMBLEM ════════════════════════════════════════════════════════ */
