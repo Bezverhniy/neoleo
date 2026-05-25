@@ -353,14 +353,6 @@ function DockBtn({ d, idx }: { d: DockEntry; idx: number }) {
   );
 }
 
-// ─── World cards data ─────────────────────────────────────────────────────────
-
-const WORLD_CARDS = [
-  { icon: "🎮", label: "Gaming & VR",              sub: "Next-level play"   },
-  { icon: "🥊", label: "Boxing & Athletics",        sub: "Train. Fight. Win." },
-  { icon: "🧭", label: "Exploration & Creativity",  sub: "Beyond the map"   },
-] as const;
-
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HeroPage() {
@@ -369,7 +361,6 @@ export default function HeroPage() {
       <Atmosphere/>
       <Stars/>
 
-      {/* ══ HERO SCENE ══════════════════════════════════════════════════════ */}
       <div className="nl-scene">
 
         {/* ── Emblem — transparent PNG, glow behind ── */}
@@ -450,23 +441,6 @@ export default function HeroPage() {
           neoleo.me
         </motion.p>
       </div>
-
-      {/* ══ NELEO WORLD SECTION ═════════════════════════════════════════════ */}
-      <section className="nl-world">
-        <div className="nl-world-inner">
-          <p className="nl-world-eyebrow">Identity Core</p>
-          <h2 className="nl-world-title">NeoLeo World</h2>
-          <div className="nl-world-grid">
-            {WORLD_CARDS.map((card) => (
-              <div key={card.label} className="nl-card">
-                <span className="nl-card-icon">{card.icon}</span>
-                <span className="nl-card-label">{card.label}</span>
-                <span className="nl-card-sub">{card.sub}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700;900&display=swap');
@@ -764,6 +738,7 @@ export default function HeroPage() {
           border-radius: inherit; pointer-events: none;
           animation: nlShimmer 5s ease-in-out infinite;
         }
+        
         .nl-btn-icon {
           display: flex; align-items: center; justify-content: center;
           filter: drop-shadow(0 0 5px var(--btn-glow));
@@ -781,62 +756,6 @@ export default function HeroPage() {
         .nl-domain {
           margin: 0; font-size: .66rem; letter-spacing: .36em;
           text-transform: uppercase; color: rgba(0,229,255,.20);
-        }
-
-        /* ══ WORLD SECTION ═════════════════════════════════════════════════ */
-        .nl-world {
-          position: relative; z-index: 10;
-          width: 100%; padding: 60px 24px 80px;
-          display: flex; justify-content: center;
-        }
-        .nl-world-inner {
-          width: 100%; max-width: 430px;
-          display: flex; flex-direction: column;
-          align-items: center; gap: 0;
-        }
-        .nl-world-eyebrow {
-          margin: 0 0 8px;
-          font-size: .72rem; font-weight: 600;
-          letter-spacing: .30em; text-transform: uppercase;
-          color: rgba(0,229,255,.45);
-        }
-        .nl-world-title {
-          margin: 0 0 36px;
-          font-size: clamp(1.9rem, 8vw, 2.4rem);
-          font-weight: 900; letter-spacing: .12em;
-          text-transform: uppercase; line-height: 1;
-          background: linear-gradient(135deg, #9FFFFF 0%, #00E5FF 40%, #28B8FF 100%);
-          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-          background-clip: text;
-          filter: drop-shadow(0 0 18px rgba(0,229,255,.40));
-        }
-        .nl-world-grid {
-          width: 100%;
-          display: flex; flex-direction: column; gap: 14px;
-        }
-        .nl-card {
-          display: flex; flex-direction: column; align-items: flex-start;
-          gap: 4px; padding: 20px 22px;
-          background: linear-gradient(145deg,
-            rgba(0,180,255,.07) 0%, rgba(0,60,120,.12) 100%);
-          border: 1px solid rgba(0,200,255,.18);
-          border-radius: 18px;
-          backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-          box-shadow: 0 6px 24px rgba(0,0,0,.40);
-        }
-        .nl-card-icon {
-          font-size: 1.8rem; line-height: 1;
-          margin-bottom: 6px; filter: drop-shadow(0 0 8px rgba(0,220,255,.50));
-        }
-        .nl-card-label {
-          font-size: clamp(1.0rem, 4.5vw, 1.15rem);
-          font-weight: 700; letter-spacing: .08em;
-          text-transform: uppercase; color: rgba(160,230,255,.90);
-        }
-        .nl-card-sub {
-          font-size: .78rem; font-weight: 500;
-          letter-spacing: .14em; text-transform: uppercase;
-          color: rgba(0,200,255,.45);
         }
 
         /* ══ RESETS ════════════════════════════════════════════════════════ */
