@@ -45,7 +45,7 @@ const DOCK = [
     shine:  "rgba(37,211,102,0.18)",
   },
   {
-    id: "telegram",   href: "https://t.me/YOUR_USERNAME",
+    id: "telegram",   href: "https://wa.me/79162218983",
     label: "Telegram",  Ico: IcoTelegram,
     iconColor: "#2AABEE",
     glow:   "rgba(42,171,238,0.60)",
@@ -63,7 +63,7 @@ const DOCK = [
     shine:  "rgba(255,51,51,0.15)",
   },
   {
-    id: "instagram",  href: "https://instagram.com/YOUR_HANDLE",
+    id: "instagram",  href: "https://instagram.com/NeoLeoTV",
     label: "Instagram", Ico: IcoInstagram,
     iconColor: "#E1306C",
     glow:   "rgba(225,48,108,0.58)",
